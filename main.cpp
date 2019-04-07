@@ -1,4 +1,5 @@
-        #include <iostream>
+#include <iostream>
+#include <cstdlib>
 using namespace std;
 
 struct pracownik{
@@ -10,16 +11,27 @@ struct pracownik{
 
 };
 
-void sortuj_wiek(pracownik lista){
-    pracownik temp;
-    for(int i=0;i<x)
-};
-void sortuj_stawka(){
-
-};
-void sortuj_godziny(){
-
-};
+void sortuj_wiek(pracownik lista[],int x){
+    for(int i=0;i<x;i++){
+        for(int j=1;j<x-i;j++)
+            if(lista[j-1].wiek>lista[j].wiek)
+                swap(lista[j-1], lista[j]);
+    }
+}
+void sortuj_stawka(pracownik lista[],int x){
+    for(int i=0;i<x;i++){
+        for(int j=1;j<x-i;j++)
+            if(lista[j-1].stawka>lista[j].stawka)
+                swap(lista[j-1], lista[j]);
+    }
+}
+void sortuj_godziny(pracownik lista[],int x){
+    for(int i=0;i<x;i++){
+        for(int j=1;j<x-i;j++)
+            if(lista[j-1].przeprawcowane_godz>lista[j].przeprawcowane_godz)
+                swap(lista[j-1], lista[j]);
+    }
+}
 
 void wypisz(pracownik pracownik[],int x){
     for (int i=0;i<x;i++){
@@ -53,7 +65,32 @@ int main() {
         cout << "Podaj przepracowane godziny: ";
         cin >> pracownicy[i].przeprawcowane_godz;
     }
+    cout << endl;
+    wypisz(pracownicy,x);
+    int wybor;
+        cout << "Wybierz sortowanie:"<<endl;
+        cout << "1=Wiek" <<endl;
+        cout << "2=Stawka" <<endl;
+        cout << "3=Przepracowane godziny" <<endl;
+        cout << "4=koniec" <<endl;
+        cin >> wybor;
+        switch(wybor){
+            case 1:
+                sortuj_wiek(pracownicy,x);
+                break;
+            case 2:
+                sortuj_stawka(pracownicy,x);
+                break;
+            case 3:
+                sortuj_godziny(pracownicy,x);
+                break;
+            default:
+                return 0;
+
+        }
     wypisz(pracownicy,x);
 
+
+    system("pause");
     return 0;
 }
